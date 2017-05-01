@@ -1,8 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/NP_HB_FTP.dir/main.cpp.obj"
+  "CMakeFiles/NP_HB_FTP.dir/main.cpp.o"
   "NP_HB_FTP.pdb"
   "NP_HB_FTP.exe"
-  "NP_HB_FTP.exe.manifest"
   "libNP_HB_FTP.dll.a"
 )
 

@@ -9,7 +9,7 @@
 #define _SerialStreamBuf_h_
 
 #include "SerialPort.h"
-//#include <boost/scoped_ptr.hpp>
+#include <boost/scoped_ptr.hpp>
 #include <streambuf>
 #include <string>
 
@@ -530,7 +530,7 @@ extern "C++"
             SerialStreamBuf& operator=( const SerialStreamBuf& ) ;
 
             class Implementation ;
-            //boost::scoped_ptr<Implementation> mImpl ;
+            boost::scoped_ptr<Implementation> mImpl ;
         } ; // class SerialStreamBuf
     } // namespace LibSerial
 } // extern "C++"

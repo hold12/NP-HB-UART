@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/AndersWOlsen/Documents/GitHub/DTU/NP-HB-FTP
+# Install script for directory: /cygdrive/c/Users/AndersWOlsen/Documents/GitHub/DTU/NP-HB-FTP
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/NP_HB_FTP")
+  set(CMAKE_INSTALL_PREFIX "/usr/local")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -35,5 +35,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/AndersWOlsen/Documents/GitHub/DTU/NP-HB-FTP/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/cygdrive/c/Users/AndersWOlsen/Documents/GitHub/DTU/NP-HB-FTP/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
