@@ -9,7 +9,7 @@
 #define _SerialStreamBuf_h_
 
 #include "SerialPort.h"
-#include <boost/scoped_ptr.hpp>
+//#include <boost/scoped_ptr.hpp>
 #include <streambuf>
 #include <string>
 
