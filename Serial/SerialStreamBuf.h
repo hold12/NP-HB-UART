@@ -8,7 +8,7 @@
 #ifndef _SerialStreamBuf_h_
 #define _SerialStreamBuf_h_
 
-#include "Serial/SerialPort.h"
+#include "SerialPort.h"
 #include <boost/scoped_ptr.hpp>
 #include <streambuf>
 #include <string>

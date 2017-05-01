@@ -1,7 +1,5 @@
 #include <iostream>
-#include <string.h>
 #include "Serial/SerialStream.h"
-#include "Serial/SerialStreamBuf.h"
 
 using namespace LibSerial;
 

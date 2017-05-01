@@ -8,7 +8,7 @@
 #ifndef _SerialStream_h_
 #define _SerialStream_h_
 
-#include "Serial/SerialStreamBuf.h"
+#include "SerialStreamBuf.h"
 #include <string>
 #include <fstream>
 
