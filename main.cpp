@@ -31,7 +31,7 @@ int main() {
 
     if ((rc = tcgetattr(fd, &options)) < 0) {
         perror("failed to get attr.");
-        exit(EXIT_FAILURE);
+        return -1;
     }
 
     cfsetispeed(&options, B115200);
@@ -47,9 +47,9 @@ int main() {
     // Set new attributes
     if ((rc = tcsetattr(fd, TCSANOW, &options)) < 0) {
         perror("faiuled to set attr.");
-        exit(EXIT_FAILURE);
+        return -1;
     }
 
     close(fd);
-    return EXIT_SUCCESS;
+    return 0;
 }
