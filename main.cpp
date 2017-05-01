@@ -59,6 +59,14 @@ int main() {
     char buf{BUFFER_SIZE};
     memset(&buf, '\0', sizeof buf);
 
+    int n = read(fd, &buf, sizeof buf);
+
+    if (n < 0)
+        std::cout << "Error reading: " << strerror(errno) << std::endl;
+
+    // Print the message:
+    std::cout << "Read: " << buf << std::endl;
+
     close(fd);
     return 0;
 }
