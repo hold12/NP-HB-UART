@@ -101,7 +101,7 @@ int main() {
         sprintf(&response[spot_read], "%c", buf);
         std::cout << "[INFO] Spot += n" << std::endl;
         spot += n;
-    } while(buf != '\r' && n > 0);
+    } while(buf != '\r' /*&& n > 0*/);
     std::cout << "[INFO] " << std::endl;
     if (n < 0)
         std::cout << "[ERROR] Error reading: " << strerror(errno) << std::endl;
