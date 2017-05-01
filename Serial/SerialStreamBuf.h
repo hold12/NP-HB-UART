@@ -530,7 +530,7 @@ extern "C++"
             SerialStreamBuf& operator=( const SerialStreamBuf& ) ;
 
             class Implementation ;
-            boost::scoped_ptr<Implementation> mImpl ;
+            //boost::scoped_ptr<Implementation> mImpl ;
         } ; // class SerialStreamBuf
     } // namespace LibSerial
 } // extern "C++"
