@@ -7,6 +7,7 @@
 #include <termios.h>
 
 const char SERIAL_PORT[] = "/dev/ttyPS0";
+const int BUFFER_SIZE = 512;
 
 int openPort(void) {
     int fd = open("/dev/ttyPS0", O_RDWR | O_NOCTTY | O_NDELAY);
@@ -49,6 +50,14 @@ int main() {
         perror("faiuled to set attr.");
         return -1;
     }
+
+    // Write
+    unsigned char cmd[] = {'l', 'o', 's', 'e', 'r', 'v', 'i', 'l', 'l', 'e', '\0'};
+    int n_written = write(fd, cmd, sizeof(cmd) - 1);
+
+    // Allocate memory for the read buffer
+    //char buf{BUFFER_SIZE};
+    //memset(&buf, '\0', sizeof buf);
 
     close(fd);
     return 0;
