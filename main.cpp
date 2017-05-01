@@ -95,8 +95,11 @@ int main() {
 
     std::cout << "[INFO] Reading incoming message." << std::endl;
     do {
+        std::cout << "[INFO] Read" << std::endl;
         n = read(fd, &buf, 1);
+        std::cout << "[INFO] Print" << std::endl;
         sprintf(&response[spot_read], "%c", buf);
+        std::cout << "[INFO] Spot += n" << std::endl;
         spot += n;
     } while(buf != '\r' && n > 0);
     std::cout << "[INFO] " << std::endl;
