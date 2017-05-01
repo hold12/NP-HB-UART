@@ -108,7 +108,7 @@ int main() {
     else if (n == 0)
         std::cout << "[ERROR] Read nothing!" << std::endl;
     else
-        std::cout << "[ERROR] Response: " << response << std::endl;
+        std::cout << "Response: " << response << std::endl;
     //int n = read(fd, &buf, sizeof buf);
 
     //if (n < 0)
