@@ -52,8 +52,14 @@ int main() {
     }
 
     // Write
-    unsigned char cmd[] = {'l', 'o', 's', 'e', 'r', 'v', 'i', 'l', 'l', 'e', '\0'};
-    int n_written = write(fd, cmd, sizeof(cmd) - 1);
+    //unsigned char cmd[] = {'l', 'o', 's', 'e', 'r', 'v', 'i', 'l', 'l', 'e', '\0'};
+    //int n_written = write(fd, cmd, sizeof(cmd) - 1);
+    unsigned char cmd[] = "loserville\r";
+    int n_written = 0, spot = 0;
+    do {
+        n_written = write(fd, &cmd[spot], 1);
+        spot += n_written;
+    } while(cmd[spot-1] != '\r' && n_written > 0);
 
     // Allocate memory for the read buffer
     char buf{BUFFER_SIZE};
