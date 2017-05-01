@@ -39,11 +39,29 @@ int main() {
     cfsetospeed(&options, B115200);
 
     cfmakeraw(&options);
-    options.c_cflag     |= (CLOCAL | CREAD);   // Enable the receiver and set local mode
-    options.c_cflag     &= ~CSTOPB;            // 1 stop bit
-    options.c_cflag     &= ~CRTSCTS;           // Disable hardware flow control
-    options.c_cc[VMIN]   = 1;
-    options.c_cc[VTIME]  = 2;
+    //options.c_cflag     |= (CLOCAL | CREAD);   // Enable the receiver and set local mode
+    //options.c_cflag     &= ~CSTOPB;            // 1 stop bit
+    //options.c_cflag     &= ~CRTSCTS;           // Disable hardware flow control
+    //options.c_cc[VMIN]   = 1;
+    //options.c_cc[VTIME]  = 2;
+    options.c_cflag     &=  ~PARENB;            // no-parity
+    options.c_cflag     &=  ~CSTOPB;            // 1-stop-bit
+    options.c_cflag     &=  ~CSIZE;             // set size to below
+    options.c_cflag     |=  CS8;                // 8 bits
+
+    options.c_cc[VMIN]   =  0;                  // read blocks
+    options.c_cc[VTIME]  =  3;                  // 0.3 seconds read timeout
+    options.c_cflag     |=  CREAD | CLOCAL;     // turn on READ & ignore ctrl lines
+
+    options.c_lflag = ECHO;                     // Enable Echo
+    options.c_lflag = ECHOK;                    // Enable Echo KILL
+    options.c_lflag = ICANON;                   // Canonical input (erase and kill processing)
+
+    options.c_iflag = IXON;                     // Enable start
+    options.c_iflag = ICRNL;                    // Map CR to NL on input
+
+    options.c_oflag = OPOST;                    // Post-process output.
+    options.c_oflag = ONLCR;                    // Map NL to CR-NL on output
 
     // Set new attributes
     if ((rc = tcsetattr(fd, TCSANOW, &options)) < 0) {
