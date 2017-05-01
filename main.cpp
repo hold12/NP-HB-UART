@@ -7,7 +7,7 @@
 #include <termios.h>
 
 const char SERIAL_PORT[] = "/dev/ttyPS0";
-const int BUFFER_SIZE = 512;
+const int BUFFER_SIZE = 1024;
 
 int openPort(void) {
     int fd = open("/dev/ttyPS0", O_RDWR | O_NOCTTY | O_NDELAY);
@@ -65,13 +65,33 @@ int main() {
     char buf{BUFFER_SIZE};
     memset(&buf, '\0', sizeof buf);
 
-    int n = read(fd, &buf, sizeof buf);
+
+    // Read message
+    int n = 0, spot_read = 0;
+    char buf_read = '\0';
+
+    char response[BUFFER_SIZE];
+    memset(response, '\0', sizeof response);
+
+    do {
+        n = read(fd, &buf, 1);
+        sprintf(&response[spot_read], "%c", buf);
+        spot += n;
+    } while(buf != '\r' && n > 0);
 
     if (n < 0)
         std::cout << "Error reading: " << strerror(errno) << std::endl;
+    else if (n == 0)
+        std::cout << "Read nothing!" << std::endl;
+    else
+        std::cout << "Response: " << response << std::endl;
+    //int n = read(fd, &buf, sizeof buf);
+
+    //if (n < 0)
+    //    std::cout << "Error reading: " << strerror(errno) << std::endl;
 
     // Print the message:
-    std::cout << "Read: " << buf << std::endl;
+    //std::cout << "Read: " << buf << std::endl;
 
     close(fd);
     return 0;
