@@ -13,12 +13,12 @@ int openPort(void) {
     int fd = open("/dev/ttyPS0", O_RDWR | O_NOCTTY | O_NDELAY);
 
     if (fd == -1)
-        perror("openPort: Unable to serial port.");
+        perror("[ERROR] openPort: Unable to serial port.");
     else {
         fcntl(fd, F_SETFL, 0);
 
 
-        std::cout << "Success connecting to " << "serial port." << std::endl;
+        std::cout << "[INFO] Success connecting to " << "serial port." << std::endl;
     }
     return(fd);
 }
@@ -31,7 +31,7 @@ int main() {
     fd = openPort();
 
     if ((rc = tcgetattr(fd, &options)) < 0) {
-        perror("failed to get attr.");
+        perror("[ERROR] failed to get attr.");
         return -1;
     }
 
@@ -65,7 +65,7 @@ int main() {
 
     // Set new attributes
     if ((rc = tcsetattr(fd, TCSANOW, &options)) < 0) {
-        perror("faiuled to set attr.");
+        perror("[ERROR] faiuled to set attr.");
         return -1;
     }
 
@@ -80,29 +80,32 @@ int main() {
     } while(cmd[spot-1] != '\r' && n_written > 0);
 
     // Allocate memory for the read buffer
-    char buf{BUFFER_SIZE};
-    memset(&buf, '\0', sizeof buf);
-
+    //char buf{BUFFER_SIZE};
+    //memset(&buf, '\0', sizeof buf);
 
     // Read message
     int n = 0, spot_read = 0;
-    char buf_read = '\0';
+    char buf = '\0';
 
+    // Allocate memory for the read buffer
+    std::cout << "[INFO] Allocation memory." << std::endl;
     char response[BUFFER_SIZE];
     memset(response, '\0', sizeof response);
+    std::cout << "[INFO] Memory allocated." << std::endl;
 
+    std::cout << "[INFO] Reading incoming message." << std::endl;
     do {
         n = read(fd, &buf, 1);
         sprintf(&response[spot_read], "%c", buf);
         spot += n;
     } while(buf != '\r' && n > 0);
-
+    std::cout << "[INFO] " << std::endl;
     if (n < 0)
-        std::cout << "Error reading: " << strerror(errno) << std::endl;
+        std::cout << "[ERROR] Error reading: " << strerror(errno) << std::endl;
     else if (n == 0)
-        std::cout << "Read nothing!" << std::endl;
+        std::cout << "[ERROR] Read nothing!" << std::endl;
     else
-        std::cout << "Response: " << response << std::endl;
+        std::cout << "[ERROR] Response: " << response << std::endl;
     //int n = read(fd, &buf, sizeof buf);
 
     //if (n < 0)
