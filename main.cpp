@@ -56,8 +56,8 @@ int main() {
     int n_written = write(fd, cmd, sizeof(cmd) - 1);
 
     // Allocate memory for the read buffer
-    //char buf{BUFFER_SIZE};
-    //memset(&buf, '\0', sizeof buf);
+    char buf{BUFFER_SIZE};
+    memset(&buf, '\0', sizeof buf);
 
     close(fd);
     return 0;
