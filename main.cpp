@@ -135,9 +135,8 @@ int main() {
 
     close(fd);
 
-    std::fstream dataFile;
-    dataFile.open("/var/ftp/pub/data2.csv", std::fstream::out | std::fstream::app);
-    dataFile << message;
-    dataFile.close();
+    std::ofstream out("/var/ftp/pub/data3.csv");
+    out << message;
+    out.close();
     return 0;
 }
