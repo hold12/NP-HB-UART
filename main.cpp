@@ -7,7 +7,7 @@
 #include <termios.h>
 
 const char SERIAL_PORT[] = "/dev/ttyPS0";
-const int BUFFER_SIZE = 256;
+const int BUFFER_SIZE = 32;
 
 int openPort(void) {
     int fd = open("/dev/ttyPS0", O_RDWR | O_NOCTTY | O_NDELAY);
@@ -98,7 +98,6 @@ int main() {
     do {
         //std::cout << "[INFO] Read" << std::endl;
         n = read(fd, &buf, 1);
-        std::cout << "n = " << n << std::endl;
         //std::cout << "[INFO] Print" << std::endl;
         message += std::string(&buf);
         std::cout << "[INFO] Buffer: " << &buf << std::endl;
