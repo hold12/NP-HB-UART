@@ -5,6 +5,8 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <termios.h>
+#include <iostream>
+#include <fstream>
 
 const char SERIAL_PORT[] = "/dev/ttyPS0";
 const int BUFFER_SIZE = 8;
@@ -109,15 +111,19 @@ int main() {
         read_count++;
     } /*while(buf != '\r' && n > 0);*/
 
-    std::cout << "Reponse is: " << message << std::endl;
 
     std::cout << "[INFO] " << std::endl;
     if (n < 0)
         std::cout << "[ERROR] Error reading: " << strerror(errno) << std::endl;
     else if (n == 0)
         std::cout << "[ERROR] Read nothing!" << std::endl;
-    else
-        std::cout << "Response: " << message << std::endl;
+    else {
+        std::cout << "Response: " << std::endl << message << std::endl;
+        std::ofstream dataFile;
+        dataFile.open("/var/ftp/pub/data_tmp.csv");
+        dataFile << message;
+        dataFile.close();
+    }
     //int n = read(fd, &buf, sizeof buf);
 
     //if (n < 0)
