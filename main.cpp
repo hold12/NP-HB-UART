@@ -122,5 +122,9 @@ int main() {
     }
 
     close(fd);
+
+    FILE *fp = fopen("/var/ftp/pub/data4.csv", "w");
+    fprintf(fp, message.c_str());
+    fclose(fp);
     return 0;
 }
