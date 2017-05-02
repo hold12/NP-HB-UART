@@ -125,10 +125,6 @@ int main() {
         //dataFile.close();
     }
 
-    std::fstream fs;
-    fs.open("../test.txt", std::fstream::out | std::fstream::app);
-    fs << "Lorem ipsum dolor sit amet...";
-    fs.close();
     //int n = read(fd, &buf, sizeof buf);
 
     //if (n < 0)
@@ -138,5 +134,10 @@ int main() {
     //std::cout << "Read: " << buf << std::endl;
 
     close(fd);
+
+    std::fstream dataFile;
+    dataFile.open("/var/ftp/pub/data2.csv", std::fstream::out | std::fstream::app);
+    dataFile << message;
+    dataFile.close();
     return 0;
 }
