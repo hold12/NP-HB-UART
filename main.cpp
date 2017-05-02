@@ -103,7 +103,6 @@ int main() {
         n = read(fd, &buf, 1);
         //std::cout << "[INFO] Print" << std::endl;
         message += std::string(&buf);
-        std::cout << "[INFO] Buffer: " << &buf << std::endl;
         //sprintf(&response[spot_read], "%c", buf);
 
         //std::cout << "[INFO] Spot += n" << std::endl;
@@ -118,12 +117,12 @@ int main() {
     else if (n == 0)
         std::cout << "[ERROR] Read nothing!" << std::endl;
     else {
-        std::cout << "Response: " << std::endl << message << std::endl;
+        std::cout << "Response: " << std::endl << "fuck you" << std::endl;
     }
 
     close(fd);
 
-    FILE *fp = fopen("/var/ftp/pub/data4.csv", "w");
+    FILE *fp = fopen("/var/ftp/pub/data.csv", "w");
     fprintf(fp, message.c_str());
     fclose(fp);
     return 0;
