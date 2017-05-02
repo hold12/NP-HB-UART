@@ -95,7 +95,8 @@ int main() {
 
     std::string message;
     std::cout << "[INFO] Reading incoming message." << std::endl;
-    do {
+    int read_count = 0;
+    /*do*/while(read_count < 17560) {
         //std::cout << "[INFO] Read" << std::endl;
         n = read(fd, &buf, 1);
         //std::cout << "[INFO] Print" << std::endl;
@@ -105,7 +106,8 @@ int main() {
 
         //std::cout << "[INFO] Spot += n" << std::endl;
         spot += n;
-    } while(buf != '\r' && n > 0);
+        read_count++;
+    } /*while(buf != '\r' && n > 0);*/
 
     std::cout << "Reponse is: " << message << std::endl;
 
