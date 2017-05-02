@@ -93,7 +93,7 @@ int main() {
     memset(response, '\0', sizeof response);
     std::cout << "[INFO] Memory allocated." << std::endl;
 
-    std::string message;
+    std::string message = "";
     std::cout << "[INFO] Reading incoming message." << std::endl;
     int read_count = 0;
     /*do*/while(read_count < 17560) {
@@ -117,7 +117,7 @@ int main() {
     else if (n == 0)
         std::cout << "[ERROR] Read nothing!" << std::endl;
     else
-        std::cout << "Response: " << response << std::endl;
+        std::cout << "Response: " << message << std::endl;
     //int n = read(fd, &buf, sizeof buf);
 
     //if (n < 0)
