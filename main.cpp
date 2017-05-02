@@ -93,15 +93,22 @@ int main() {
     memset(response, '\0', sizeof response);
     std::cout << "[INFO] Memory allocated." << std::endl;
 
+    std::string message;
     std::cout << "[INFO] Reading incoming message." << std::endl;
     do {
-        std::cout << "[INFO] Read" << std::endl;
+        //std::cout << "[INFO] Read" << std::endl;
         n = read(fd, &buf, 1);
-        std::cout << "[INFO] Print" << std::endl;
-        sprintf(&response[spot_read], "%c", buf);
-        std::cout << "[INFO] Spot += n" << std::endl;
+        //std::cout << "[INFO] Print" << std::endl;
+        message += std::string(&buf);
+        std::cout << "[INFO] Buffer: " << &buf << std::endl;
+        //sprintf(&response[spot_read], "%c", buf);
+
+        //std::cout << "[INFO] Spot += n" << std::endl;
         spot += n;
     } while(buf != '\r' && n > 0);
+
+    std::cout << "Reponse is: " << message << std::endl;
+
     std::cout << "[INFO] " << std::endl;
     if (n < 0)
         std::cout << "[ERROR] Error reading: " << strerror(errno) << std::endl;
