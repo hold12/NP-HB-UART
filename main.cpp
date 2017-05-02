@@ -136,7 +136,7 @@ int main() {
     close(fd);
 
     std::ofstream out("/var/ftp/pub/data3.csv");
-    out << message;
+    out << message.c_str();
     out.close();
     return 0;
 }
