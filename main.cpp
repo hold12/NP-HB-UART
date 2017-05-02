@@ -98,6 +98,7 @@ int main() {
     do {
         //std::cout << "[INFO] Read" << std::endl;
         n = read(fd, &buf, 1);
+        std::cout << "n = " << n << std::endl;
         //std::cout << "[INFO] Print" << std::endl;
         message += std::string(&buf);
         std::cout << "[INFO] Buffer: " << &buf << std::endl;
