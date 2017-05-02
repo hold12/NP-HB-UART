@@ -7,7 +7,7 @@
 #include <termios.h>
 
 const char SERIAL_PORT[] = "/dev/ttyPS0";
-const int BUFFER_SIZE = 1024;
+const int BUFFER_SIZE = 256;
 
 int openPort(void) {
     int fd = open("/dev/ttyPS0", O_RDWR | O_NOCTTY | O_NDELAY);
