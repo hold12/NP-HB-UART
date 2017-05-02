@@ -119,10 +119,10 @@ int main() {
         std::cout << "[ERROR] Read nothing!" << std::endl;
     else {
         std::cout << "Response: " << std::endl << message << std::endl;
-        std::ofstream dataFile;
-        dataFile.open("/var/ftp/pub/data_tmp.csv");
-        dataFile << message;
-        dataFile.close();
+        //std::ofstream dataFile;
+        //dataFile.open("/var/ftp/pub/data_tmp.csv");
+        //dataFile << message;
+        //dataFile.close();
     }
     //int n = read(fd, &buf, sizeof buf);
 
