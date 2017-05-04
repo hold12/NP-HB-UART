@@ -41,11 +41,6 @@ int main() {
     cfsetospeed(&options, B115200);
 
     cfmakeraw(&options);
-    //options.c_cflag     |= (CLOCAL | CREAD);   // Enable the receiver and set local mode
-    //options.c_cflag     &= ~CSTOPB;            // 1 stop bit
-    //options.c_cflag     &= ~CRTSCTS;           // Disable hardware flow control
-    //options.c_cc[VMIN]   = 1;
-    //options.c_cc[VTIME]  = 2;
     options.c_cflag     &=  ~PARENB;            // no-parity
     options.c_cflag     &=  ~CSTOPB;            // 1-stop-bit
     options.c_cflag     &=  ~CSIZE;             // set size to below
@@ -65,15 +60,12 @@ int main() {
     options.c_oflag = OPOST;                    // Post-process output.
     options.c_oflag = ONLCR;                    // Map NL to CR-NL on output
 
-    // Set new attributes
     if ((rc = tcsetattr(fd, TCSANOW, &options)) < 0) {
         perror("[ERROR] faiuled to set attr.");
         return -1;
     }
 
     // Write
-    //unsigned char cmd[] = {'l', 'o', 's', 'e', 'r', 'v', 'i', 'l', 'l', 'e', '\0'};
-    //int n_written = write(fd, cmd, sizeof(cmd) - 1);
     unsigned char cmd[] = "loserville\r";
     int n_written = 0, spot = 0;
     do {
@@ -81,15 +73,11 @@ int main() {
         spot += n_written;
     } while(cmd[spot-1] != '\r' && n_written > 0);
 
-    // Allocate memory for the read buffer
-    //char buf{BUFFER_SIZE};
-    //memset(&buf, '\0', sizeof buf);
-
-    // Read message
+    // Read incoming message
     int n = 0, spot_read = 0;
     char buf = '\0';
 
-    // Allocate memory for the read buffer
+    // Allocating memory for the read buffer
     std::cout << "[INFO] Allocation memory." << std::endl;
     char response[BUFFER_SIZE];
     memset(response, '\0', sizeof response);
@@ -97,18 +85,14 @@ int main() {
 
     std::string message = "";
     std::cout << "[INFO] Reading incoming message." << std::endl;
-    int read_count = 0;
-    /*do*/while(read_count < 17560) {
-        //std::cout << "[INFO] Read" << std::endl;
+    
+    for(int read_count = 0; read_count < 16500; read_count) {
         n = read(fd, &buf, 1);
-        //std::cout << "[INFO] Print" << std::endl;
         message += std::string(&buf);
-        //sprintf(&response[spot_read], "%c", buf);
 
-        //std::cout << "[INFO] Spot += n" << std::endl;
         spot += n;
         read_count++;
-    } /*while(buf != '\r' && n > 0);*/
+    } 
 
 
     std::cout << "[INFO] " << std::endl;
@@ -117,7 +101,7 @@ int main() {
     else if (n == 0)
         std::cout << "[ERROR] Read nothing!" << std::endl;
     else {
-        std::cout << "Response: " << std::endl << "fuck you" << std::endl;
+        std::cout << "Message received: " << std::endl;
     }
 
     close(fd);
