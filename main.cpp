@@ -86,7 +86,7 @@ int main() {
     std::string message = "";
     std::cout << "[INFO] Reading incoming message." << std::endl;
     
-    for(int read_count = 0; read_count < 16500; read_count) {
+    for(int read_count = 0; read_count < 17500; read_count) {
         n = read(fd, &buf, 1);
         message += std::string(&buf);
 
