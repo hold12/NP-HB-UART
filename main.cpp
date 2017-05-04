@@ -104,7 +104,7 @@ int main() {
         std::cout << "Message received: " << std::endl;
     }
 
-    std::cout << "[INFO] Send off to sensor 2" << std::endl;
+    /*std::cout << "[INFO] Send off to sensor 2" << std::endl;
     unsigned char cmd2[] = "off 2\r";
     int n_written2 = 0, spot2 = 0;
     do {
@@ -112,7 +112,7 @@ int main() {
         spot2 += n_written2;
     } while(cmd2[spot2-1] != '\r' && n_written2 > 0);
 
-    std::cout << "[INFO] Message sent" << std::endl;
+    std::cout << "[INFO] Message sent" << std::endl;*/
 
     close(fd);
 
