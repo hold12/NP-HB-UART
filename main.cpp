@@ -12,7 +12,7 @@ const char SERIAL_PORT[] = "/dev/ttyPS0";
 const int BUFFER_SIZE = 8;
 
 int openPort(void) {
-    int fd = open("/dev/ttyPS0", O_RDWR | O_NOCTTY | O_NDELAY);
+    int fd = open("/dev/ttyPS0", O_RDWR | O_NOCTTY);
 
     if (fd == -1)
         perror("[ERROR] openPort: Unable to serial port.");
