@@ -104,6 +104,16 @@ int main() {
         std::cout << "Message received: " << std::endl;
     }
 
+    std::cout << "[INFO] Send off to sensor 2" << std::endl;
+    unsigned char cmd[] = "off 2\r";
+    int n_written = 0, spot = 0;
+    do {
+        n_written = write(fd, &cmd[spot], 1);
+        spot += n_written;
+    } while(cmd[spot-1] != '\r' && n_written > 0);
+
+    std::cout << "[INFO] Message sent" << std::endl;
+
     close(fd);
 
     FILE *fp = fopen("/var/ftp/pub/data.csv", "w");
